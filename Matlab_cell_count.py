@@ -16,9 +16,9 @@ if (len(sys.argv) != 3):
     sys.exit()
 
 
-green_channel = NP.genfromtxt(sys.argv[1], delimiter=',', skip_header=1, skip_footer=0, usecols=(24, 1), names=['Frame', 'CellID'])
+green_channel = NP.genfromtxt(sys.argv[1], delimiter=',', skip_header=1, skip_footer=0, usecols=(1, 2), names=['Frame', 'CellID'])
 
-red_channel = NP.genfromtxt(sys.argv[2], delimiter=',', skip_header=1, skip_footer=0, usecols=(24, 1), names=['Frame', 'CellID'])
+red_channel = NP.genfromtxt(sys.argv[2], delimiter=',', skip_header=1, skip_footer=0, usecols=(1, 2), names=['Frame', 'CellID'])
 
 
 # Get Green Channel Frames and CIDs
