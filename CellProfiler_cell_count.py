@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #
-# Last modified: 22 Jun 2017
+# Last modified: 25 Jul 2017
 # Author: Ceylin Ozdemir
 #
 
@@ -13,14 +13,17 @@ import matplotlib.pyplot as PLT
 
 # Usage
 if (len(sys.argv) != 3):
-    print 'Usage: python Matlab_cell_count.py /path/to/AllMyExpt_MyCells_Green.csv /path/to/AllMyExpt_MyCells_Red.csv'
-    sys.exit()
+	print '\nMake sure to include both the Green and the Red csv files, see usage below...\n'
+	print 'Usage: python Matlab_cell_count.py /path/to/AllMyExpt_MyCells_Green.csv /path/to/AllMyExpt_MyCells_Red.csv'
+	sys.exit()
 
 
 # Get the csv files
 green_channel = NP.genfromtxt(sys.argv[1], delimiter=',', skip_header=1, skip_footer=0, usecols=(4, 1), names=['Frame', 'CellID'])
 
 red_channel = NP.genfromtxt(sys.argv[2], delimiter=',', skip_header=1, skip_footer=0, usecols=(4, 1), names=['Frame', 'CellID'])
+
+xlim = int(raw_input('Enter number of frames: '))
 
 
 # Get Green Channel Frames and CIDs
@@ -54,6 +57,6 @@ PLT.xlabel('Frame Number')
 PLT.ylabel('Number of Cells')
 PLT.plot(frames_g, cids_g, color='g', linestyle='-')
 PLT.plot(frames_r, cids_r, color='r', linestyle='-')
-PLT.xlim([0,400])
+PLT.xlim([0,xlim])
 #PLT.ylim([20, 500])
 PLT.savefig('CellProfiler_cell_count.png')
