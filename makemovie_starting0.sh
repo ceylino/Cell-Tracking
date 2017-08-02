@@ -25,14 +25,13 @@ done
 LENGTH=$((CNT/FRAMESPERSEC))
 
 # Make movie
-echo "Creating a movie..."
 echo "Number of Frames: $CNT"
-echo "Estimated Length: $LENGTH seconds"
-echo -e "\n \n"
+echo -e "Estimated Length: $LENGTH seconds\n"
+echo "Creating a movie..."
 
 Name_Part_1=$1
 Name_Part_2=$2
 Output=$3
 
 
-avconv -framerate 10 -i "${Name_Part_1}%03d${Name_Part_2}" -s:v 1920x1080 -b:v 8640k ${Output}.mp4
+avconv -framerate 10 -loglevel quiet -i "${Name_Part_1}%03d${Name_Part_2}" -s:v 1920x1080 -b:v 8640k -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p ${Output}.mp4
